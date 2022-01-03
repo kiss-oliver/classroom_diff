@@ -1,0 +1,1 @@
+for d in ./*; do for e in ./*; do cd $d; for f in *.py; do if [[ -f ../$e/$f ]]; then echo $d $e $f $(cat $f ../$e/$f 2>/dev/null| sed '/^\s*#/d;/^\s*$/d' | wc -l) $(diff -w -B $f ../$e/$f 2>/dev/null|sed '/^\s*#/d;/^\s*$/d'|wc -l) 2>/dev/null; fi; done; cd ..; done; done > ../diffs.csv
